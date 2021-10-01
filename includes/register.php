@@ -24,55 +24,41 @@ if (isset($_POST['register_email_user'])) {
         $error = 'Passwords should be the same!';
         header('Location: ../index.php?registration_status=' . $error . '');
         exit();
-    } 
+    }
 
-    /* Validation to check if Terms and Conditions are accepted */ 
+    /* Validation to check if Terms and Conditions are accepted */
     if (empty($terms)) {
         $error = "Accept Terms and Conditions to Register";
         header('Location: ../index.php?registration_status=' . $error . '');
         exit();
-    } 
+    }
 
     if (!$error) {
         // create email on the server.
         require_once('cPanelApi.php');
-        $connect_api = new cPanelApi("llkll.net", "llwllnet", "Rashad99412522"); 
+        $connect_api = new cPanelApi("llkll.net", "llwllnet", "Rashad99412522");
 
         if ($connect_api) {
-            $create_email = $connect_api->createEmail($uname, $password, "500");
-
-            if ($create_email) { 
+            $create_email = $connect_api->createEmail($uname, $password, '500');
+            
+            if ($create_email) {
                 $query = "INSERT INTO email_users (uname, fname, lname, password, email, gender, created_at, updated_at) VALUES('$uname', '$fname', '$lname', '$password', '$email', '$gender', '$created_at', '$updated_at')";
                 $execute_query = mysqli_query($connection, $query);
 
                 if ($execute_query) {
                     $registration_status = "Email Registration Successfull!.";
-                    header('Location: ../success_message.php?registration_status='. $registration_status.''); 
+                    header('Location: ../success_message.php?registration_status=' . $registration_status . '');
                     exit();
                 }
-            }
-            else { 
+            } else {
                 $registration_status = "Oops. Something went wrong. Please try again!.";
-                header('Location: ../success_message.php?registration_status=' . $registration_status . '');
+                header('Location: ../index.php?registration_status=' . $registration_status . '');
                 exit();
             }
-        }
-        else { 
+        } else {
             $registration_status = "Oops. Unexpected Server Error!.";
-            header('Location: ../success_message.php?registration_status=' . $registration_status . '');
+            header('Location: ../index.php?registration_status=' . $registration_status . '');
             exit();
-        } 
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
