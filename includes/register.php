@@ -19,9 +19,17 @@ if (isset($_POST['register_email_user'])) {
         header('Location: ../index.php?registration_status=' . $error . '');
         exit();
     }
+
     /* Password Matching Validation */
     if ($password != $confirm_password) {
         $error = 'Passwords should be the same!';
+        header('Location: ../index.php?registration_status=' . $error . '');
+        exit();
+    }
+
+    /* email length Validation */
+    if (strlen($uname) < 4) {
+        $error = 'Email must contain 4 letters and above!';
         header('Location: ../index.php?registration_status=' . $error . '');
         exit();
     }
@@ -38,10 +46,10 @@ if (isset($_POST['register_email_user'])) {
         require_once('cPanelApi.php');
         $connect_api = new cPanelApi("url", "username", "password");
 
-        if ($connect_api) {
-            $create_email = $connect_api->createEmail($uname, $password, '500');
+        if (($connect_api)) {
+            $create_email = json_encode($connect_api->createEmail($uname, $password, '500'));
             
-            if ($create_email) {
+            if ($create_email) {    
                 $query = "INSERT INTO email_users (uname, fname, lname, password, email, gender, created_at, updated_at) VALUES('$uname', '$fname', '$lname', '$password', '$email', '$gender', '$created_at', '$updated_at')";
                 $execute_query = mysqli_query($connection, $query);
 
@@ -51,7 +59,7 @@ if (isset($_POST['register_email_user'])) {
                     exit();
                 }
             } else {
-                $registration_status = "Oops. Something went wrong. Please try again!.";
+                $registration_status = "Oops. Something went wrong or The email already exists. Please try again!.";
                 header('Location: ../index.php?registration_status=' . $registration_status . '');
                 exit();
             }
