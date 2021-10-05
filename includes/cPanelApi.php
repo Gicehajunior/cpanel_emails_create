@@ -528,7 +528,7 @@ class cPanelApi
         $query = $func;
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
         curl_setopt($curl, CURLOPT_HEADER, 0);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         $header[0] = "Authorization: Basic " . base64_encode($this->cPanelUser . ":" . $this->cPanelPwd) . "\n\r";

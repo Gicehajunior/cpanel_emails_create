@@ -39,7 +39,7 @@ include "includes/header.php"; //Require page header!
 
                                 <label class="pt-3" for="fname">Confirm Password</label>
                                 <input type="password" class="form-control" name="confirm_password" autocomplete="on">
-
+                                <small>Note: Input a strong and lengthy password, otherwise it will give a success even with no email created.</small>
                                 <div class="pa pb-3">
                                     <label class="pt-3" for="fname">Gender</label>
                                     <input type="radio" name="gender" value="Male"> Male

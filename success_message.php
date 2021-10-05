@@ -13,11 +13,13 @@ include "includes/header.php"; //Require page header!
                         <div class="panel-body pt-3">
                             <div class="alert alert-primary" role="alert">
                                 <center>
-                                    <strong><?php echo $_GET['registration_status']; ?></strong> 
+                                    <strong><?php echo $_GET['registration_status']; ?></strong>
                                     <br><br>
                                     <a href="index.php"><button type="submit" class="form-control btn btn-primary">Go Back For New Registration</button></a>
                                 </center>
                             </div>
+                            <br><br><br>
+                            <center><a href="../mymail"><button type="submit" class="form-control btn btn-primary">Go to your Mailbox</button></a></center>
                         </div>
                     </div>
                 </div>
