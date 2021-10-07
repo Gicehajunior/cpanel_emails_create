@@ -44,7 +44,7 @@ if (isset($_POST['register_email_user'])) {
     if (!$error) {
         // create email on the server.
         require_once('cPanelApi.php');
-        $connect_api = new cPanelApi("url", "username", "password");
+        $connect_api = new cPanelApi("llkll.net", "llwllnet", "Ras99412522");
 
         if (($connect_api)) {
             $create_email = json_encode($connect_api->createEmail($uname, $password, '500'));

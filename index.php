@@ -1,4 +1,4 @@
-<?php 
+<?php
 include "includes/header.php"; //Require page header!
 ?>
 <section class="container pb-5">
@@ -11,14 +11,15 @@ include "includes/header.php"; //Require page header!
                             <h2>Registration</h2>
                         </div>
                         <div class="panel-body pt-3">
+                            <div class="error-display-container" id="error-display-container"></div>
                             <?php
-                                if ($_GET['registration_status']) {
+                            if ($_GET['registration_status']) {
 
-                                    echo   '<div class="alert alert-primary" role="alert">
-                                                <strong>'. $_GET['registration_status'] .'</strong>
+                                echo   '<div class="alert alert-primary" role="alert">
+                                                <strong>' . $_GET['registration_status'] . '</strong>
                                             </div>';
-                                }
-                            ?> 
+                            }
+                            ?>
                             <form method="POST" action="includes/register.php" enctype="multipart/form-data">
                                 <label class="pt-3" for="fname">First Name</label>
                                 <input type="text" class="form-control" name="fname" autocomplete="on">
@@ -28,7 +29,7 @@ include "includes/header.php"; //Require page header!
 
                                 <label class="pt-3" for="lname">Email</label>
                                 <div class="input-group mb-3">
-                                    <input type="text" name="uname" class="form-control" placeholder="Email Username" aria-label="Email username" aria-describedby="basic-addon2" autocomplete="on">
+                                    <input type="text" name="uname" id="uname" class="form-control" placeholder="Email Username" aria-label="Email username" aria-describedby="basic-addon2" autocomplete="on" onkeyup="ping_check_if_email_exists()">
                                     <div class="input-group-append">
                                         <span class="input-group-text" id="basic-addon2">@llkll.net</span>
                                     </div>
@@ -47,7 +48,7 @@ include "includes/header.php"; //Require page header!
                                 </div>
 
                                 <input type="checkbox" name="terms" class="" autocomplete="on"> I accept Terms and Conditions
-                                <input type="submit" name="register_email_user" value="Register" class="btn btn-primary " style="width:100%; margin-top:10px;">
+                                <input type="submit" name="register_email_user" id="register_email_user_button" value="Register" class="btn btn-primary " style="width:100%; margin-top:10px;">
                             </form>
                         </div>
                     </div>
